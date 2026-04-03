@@ -4,7 +4,7 @@ on init
     setprop sys.usb.configfs 1
     setprop sys.usb.controller "musb-hdrc"
     setprop sys.usb.ffs.aio_compat 0
-    export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw
+    export LD_LIBRARY_PATH /vendor/lib64:/vendor/lib64/hw
     setprop crypto.ready 1
     start boot-hal-1-2
 
