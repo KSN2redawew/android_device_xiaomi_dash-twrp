@@ -61,24 +61,3 @@ service mtk.plpath.utils.link /system/bin/mtk_plpath_utils
     oneshot
     disabled
     seclabel u:r:recovery:s0
-	
-service vendor.gatekeeper-default /vendor/bin/hw/android.hardware.gatekeeper-service.mitee
-    interface aidl android.hardware.gatekeeper.IGatekeeper/default
-    user root
-    group root
-    disabled
-    seclabel u:r:recovery:s0
-	
-service vendor.keymint-mitee /vendor/bin/hw/android.hardware.security.keymint@3.0-service.mitee
-    class early_hal
-    interface aidl android.hardware.security.keymint.IKeyMintDevice/default
-    interface aidl android.hardware.security.keymint.IRemotelyProvisionedComponent/default
-    interface aidl android.hardware.security.sharedsecret.ISharedSecret/default
-    interface aidl android.hardware.security.secureclock.ISecureClock/default
-    user nobody
-    seclabel u:r:recovery:s0
-	
-on property:ro.crypto.state=encrypted && property:ro.boot.dynamic_partitions=true
-    start mobicore
-    start vendor.gatekeeper-default
-    start vendor.keymint-mitee
